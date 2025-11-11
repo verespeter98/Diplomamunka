@@ -1,0 +1,48 @@
+/* styles.qss */  
+  
+/* Main window background */  
+QMainWindow {  
+    background-color: #f5f5f5;  
+}  
+  
+/* Labels */  
+QLabel {  
+    font-size: 14px;  
+}  
+  
+/* ComboBox, DateEdit, and PushButton */  
+QComboBox, QDateEdit, QPushButton {  
+    font-size: 14px;  
+    padding: 5px;  
+}  
+  
+/* ComboBox specific styles */  
+QComboBox {  
+    border: 1px solid gray;  
+    border-radius: 5px;  
+    padding: 3px;  
+}  
+  
+/* DateEdit specific styles */  
+QDateEdit {  
+    border: 1px solid gray;  
+    border-radius: 5px;  
+    padding: 3px;  
+}  
+  
+/* PushButton specific styles */  
+QPushButton {  
+    background-color: #00c853;  
+    color: white;  
+    border-radius: 5px;  
+    padding: 5px;  
+}  
+  
+QPushButton:hover {  
+    background-color: #005a9e;  
+}  
+  
+QPushButton:pressed {  
+    background-color: #004a8a;  
+    border-style: inset;  
+}  
