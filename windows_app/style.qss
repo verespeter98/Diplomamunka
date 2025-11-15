@@ -1,48 +1,92 @@
-/* styles.qss */  
-  
-/* Main window background */  
-QMainWindow {  
-    background-color: #f5f5f5;  
-}  
-  
-/* Labels */  
-QLabel {  
-    font-size: 14px;  
-}  
-  
-/* ComboBox, DateEdit, and PushButton */  
-QComboBox, QDateEdit, QPushButton {  
-    font-size: 14px;  
-    padding: 5px;  
-}  
-  
-/* ComboBox specific styles */  
-QComboBox {  
-    border: 1px solid gray;  
-    border-radius: 5px;  
-    padding: 3px;  
-}  
-  
-/* DateEdit specific styles */  
-QDateEdit {  
-    border: 1px solid gray;  
-    border-radius: 5px;  
-    padding: 3px;  
-}  
-  
-/* PushButton specific styles */  
-QPushButton {  
-    background-color: #00c853;  
-    color: white;  
-    border-radius: 5px;  
-    padding: 5px;  
-}  
-  
-QPushButton:hover {  
-    background-color: #005a9e;  
-}  
-  
-QPushButton:pressed {  
-    background-color: #004a8a;  
-    border-style: inset;  
-}  
+QMainWindow {
+    background-color: #f0f2f5; 
+}
+
+QWidget {
+    font-family: 'Segoe UI', Arial, sans-serif; 
+}
+
+QLabel {
+    font-size: 14px;
+    color: #333;
+}
+
+QLabel#instructionLabel {
+    font-size: 20px;
+    color: #555;
+    padding-bottom: 10px;
+}
+
+QLabel#lastPriceLabel, QLabel#sentimentLabel {
+    font-size: 16px;
+    font-weight: bold;
+    color: #004a8a; 
+    padding: 5px;
+    background-color: #e6f0fa;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+QLabel#loadingLabel {
+    font-size: 18px;
+    font-weight: bold;
+    color: #005a9e;
+}
+
+QFrame#controlsFrame {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+}
+
+QComboBox, QDateEdit {
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+QComboBox::drop-down, QDateEdit::drop-down {
+    border-left: 1px solid #ced4da;
+}
+
+QComboBox:focus, QDateEdit:focus {
+    border-color: #007bff;
+}
+
+QComboBox QAbstractItemView {
+    border: 1px solid #ced4da;
+    selection-background-color: #007bff;
+    selection-color: white;
+}
+
+QDateEdit::calendar-popup {
+    background-color: white;
+}
+
+
+QPushButton {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #28a745;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    min-width: 150px;
+}
+
+QPushButton:hover {
+    background-color: #218838; 
+}
+
+QPushButton:pressed {
+    background-color: #1e7e34; 
+}
+
+QPushButton:disabled {
+    background-color: #c0c0c0; 
+    color: #808080;
+}

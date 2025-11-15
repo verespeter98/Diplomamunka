@@ -41,8 +41,6 @@ class Worker(QThread):
         self.start_date = start_date
         self.end_date = end_date
         self.DB_PATH = "data_pipeline/stock_data.db"
-        self.MODEL_PATH = "your_model.joblib"
-        self.SCALER_PATH = "your_scaler.joblib"
 
     def run(self):
 
@@ -66,17 +64,17 @@ class Worker(QThread):
 class MainWindow(QMainWindow):  
     def __init__(self):  
         super().__init__()  
-        self.setWindowTitle("Stock Prediction Application")  
-        self.setWindowIcon(QIcon('generated_00.png')) 
-        self.setGeometry(100, 100, 800, 600)  
+        self.setWindowTitle("Pénzügyi előrejelzés")  
+        self.setWindowIcon(QIcon('icon.png')) 
+        self.setGeometry(100, 100, 900, 650)  
 
         self.main_widget = QWidget(self)  
         self.setCentralWidget(self.main_widget)  
         self.main_layout = QVBoxLayout(self.main_widget)  
-        self.main_layout.setContentsMargins(20, 20, 20, 20)  
-        self.main_layout.setSpacing(20)  
+        self.main_layout.setContentsMargins(15, 15, 15, 15)  
+        self.main_layout.setSpacing(8)  
 
-        self.instruction_label = QLabel("Please select a stock and a date range for the prediction.", self)  
+        self.instruction_label = QLabel("Válassz egy részvényt majd az előrejelzés kezdő és végdátumát!", self)  
         self.instruction_label.setWordWrap(True)
         self.main_layout.addWidget(self.instruction_label)
 
@@ -87,7 +85,7 @@ class MainWindow(QMainWindow):
         self.controls_layout.setSpacing(10)  
 
         # Stock selection
-        self.stock_label = QLabel("Select Stock:", self.controls_frame)  
+        self.stock_label = QLabel("Részvény:", self.controls_frame)  
         self.controls_layout.addWidget(self.stock_label)  
         stocks = ["OTP"] 
         self.stock_combobox = QComboBox(self.controls_frame)  
@@ -95,7 +93,7 @@ class MainWindow(QMainWindow):
         self.controls_layout.addWidget(self.stock_combobox)  
 
         # Start Date
-        self.start_date_label = QLabel("Start Date:", self.controls_frame)  
+        self.start_date_label = QLabel("Kezdő dátum:", self.controls_frame)  
         self.controls_layout.addWidget(self.start_date_label)  
         self.start_date_entry = QDateEdit(self.controls_frame)  
         self.start_date_entry.setCalendarPopup(True)  
@@ -103,24 +101,24 @@ class MainWindow(QMainWindow):
         self.controls_layout.addWidget(self.start_date_entry)  
 
         # End Date
-        self.end_date_label = QLabel("End Date:", self.controls_frame)  
+        self.end_date_label = QLabel("Utolsó dátum:", self.controls_frame)  
         self.controls_layout.addWidget(self.end_date_label)  
         self.end_date_entry = QDateEdit(self.controls_frame)  
         self.end_date_entry.setCalendarPopup(True)  
         self.end_date_entry.setDate(end_qdate)  
-        self.controls_layout.addWidget(self.end_date_entry)  
+        self.controls_layout.addWidget(self.end_date_entry) 
 
         # Predict Button
-        self.predict_button = QPushButton("Create Prediction", self.controls_frame)  
+        self.predict_button = QPushButton("Előrejelzés készítése", self.controls_frame)  
         self.predict_button.clicked.connect(self.create_prediction)  
-        self.controls_layout.addWidget(self.predict_button)  
+        self.controls_layout.addWidget(self.predict_button)
 
         self.loading_frame = QFrame(self)  
         self.loading_frame.setVisible(False)  
         
         loading_layout = QVBoxLayout(self.loading_frame)
         loading_layout.setAlignment(Qt.AlignCenter)
-        self.loading_label = QLabel("Loading, please wait...", self.loading_frame)
+        self.loading_label = QLabel("Töltés, kérlek várj...", self.loading_frame)
         self.loading_label.setAlignment(Qt.AlignCenter)
         loading_layout.addWidget(self.loading_label)  
         
@@ -157,7 +155,7 @@ class MainWindow(QMainWindow):
         end_date = self.end_date_entry.date().toPyDate()  
 
         if start_date >= end_date:  
-            QMessageBox.warning(self, "Warning", "Start date must be before end date.")  
+            QMessageBox.warning(self, "Warning", "A kezdő dátumnak a végdátumnál korábbi időpontnak kell lennie!")  
             return  
 
         self.loading_frame.setVisible(True) 
@@ -194,31 +192,34 @@ class MainWindow(QMainWindow):
             # Plot the simple list of prices
             ax.plot(dates, predicted_prices, label='Előrejelzett értékek')
 
-            ax.set_xlabel('Days')  
-            ax.set_ylabel('Price')  
+            ax.set_xlabel('Dátum')  
+            ax.set_ylabel('Ft')  
             ax.set_title(f'Előrejelzett értékek: {selected_stock}', fontsize=16)  
             ax.legend()  
+            # ax.grid(True)  
             fig.autofmt_xdate(rotation=45, ha='right')
     
+            # Create the canvas and add it to the plot_layout
             canvas = FigureCanvas(fig)  
             self.plot_layout.addWidget(canvas)  
             canvas.draw()  
 
-
+            # --- Set Labels ---
+            # Use the stubbed data to populate the labels
             last_predicted_price = predicted_prices[-1]  
             price_diff = last_predicted_price - last_known_price  
-            price_diff_text = "increased" if price_diff > 0 else "decreased"  
+            price_diff_text = "emelkedett" if price_diff > 0 else "csökkent"  
             
             self.last_price_label.setText(
-                f"Last Predicted Price: {last_predicted_price:.2f} "
-                f"({price_diff_text} by {abs(price_diff):.2f} from last known price)"
+                f"Utolsó előrejelzett érték: {last_predicted_price:.2f} "
+                f"( by {abs(price_diff):.2f}Ft-al {price_diff_text} az árfolyam from last known price)"
             )  
             self.sentiment_label.setText(
-                f"Sentiment of the latest news regarding {selected_stock} is {sentiment}."
+                f"Az {selected_stock} utolsó hírei {sentiment} hangulatuak."
             )
         
         except Exception as e:
-            self.handle_error(f"Error displaying plot: {e}")
+            self.handle_error(f"Hiba az előrejelzés generálásában: {e}")
 
 
     def handle_error(self, error_message):

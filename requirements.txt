@@ -4,6 +4,7 @@ aiohappyeyeballs==2.6.1
 aiohttp==3.13.1
 aiosignal==1.4.0
 alembic==1.17.0
+altgraph==0.17.4
 annotated-types==0.7.0
 anyio==4.11.0
 asttokens==3.0.0
@@ -11,6 +12,7 @@ astunparse==1.6.3
 attrs==25.4.0
 beautifulsoup4==4.14.2
 blinker==1.9.0
+build==1.3.0
 cachetools==6.2.1
 certifi==2025.10.5
 cffi==2.0.0
@@ -60,6 +62,7 @@ huggingface-hub==0.36.0
 hyperframe==6.1.0
 idna==3.11
 importlib_metadata==8.7.0
+iniconfig==2.3.0
 ipykernel==7.0.1
 ipython==9.6.0
 ipython_pygments_lexers==1.1.1
@@ -74,6 +77,7 @@ kiwisolver==1.4.9
 libclang==18.1.1
 lightning==2.5.5
 lightning-utilities==0.15.2
+llvmlite==0.44.0
 lxml==6.0.2
 Mako==1.3.10
 Markdown==3.9
@@ -93,7 +97,8 @@ multitasking==0.0.12
 namex==0.1.0
 nest-asyncio==1.6.0
 networkx==3.5
-numpy==2.3.4
+numba==0.61.2
+numpy==2.2.6
 opentelemetry-api==1.38.0
 opentelemetry-proto==1.38.0
 opentelemetry-sdk==1.38.0
@@ -102,10 +107,13 @@ opt_einsum==3.4.0
 optree==0.17.0
 packaging==25.0
 pandas==2.3.3
+pandas-ta==0.4.71b0
 parso==0.8.5
 peewee==3.18.2
+pefile==2023.2.7
 pillow==12.0.0
 platformdirs==4.5.0
+pluggy==1.6.0
 prompt_toolkit==3.0.52
 propcache==0.4.1
 protobuf==6.33.0
@@ -118,13 +126,24 @@ pycparser==2.23
 pydantic==2.12.3
 pydantic_core==2.41.4
 Pygments==2.19.2
+pyinstaller==6.16.0
+pyinstaller-hooks-contrib==2025.9
 pyparsing==3.2.5
+pyproject_hooks==1.2.0
+PyQt5==5.15.11
+PyQt5-Qt5==5.15.2
+PyQt5_sip==12.17.1
+PyQtWebEngine==5.15.7
+PyQtWebEngine-Qt5==5.15.2
+pytest==9.0.1
+pytest-qt==4.5.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.1
 pytorch-forecasting==1.5.0
 pytorch-lightning==2.5.5
 pytz==2025.2
 pywin32==311
+pywin32-ctypes==0.2.3
 PyYAML==6.0.3
 pyzmq==27.1.0
 regex==2025.10.23
@@ -134,6 +153,7 @@ rsa==4.9.1
 safetensors==0.6.2
 scikit-learn==1.7.2
 scipy==1.16.2
+seaborn==0.13.2
 setuptools==80.9.0
 six==1.17.0
 smmap==5.0.2
@@ -143,7 +163,8 @@ SQLAlchemy==2.0.44
 sqlparse==0.5.3
 stack-data==0.6.3
 starlette==0.48.0
-sympy==1.14.0
+sympy==1.13.1
+TA-Lib==0.6.8
 tensorboard==2.20.0
 tensorboard-data-server==0.7.2
 tensorflow==2.20.0
@@ -151,7 +172,7 @@ termcolor==3.1.0
 tf_keras==2.20.1
 threadpoolctl==3.6.0
 tokenizers==0.22.1
-torch==2.9.0
+torch==2.6.0
 torchmetrics==1.8.2
 tornado==6.5.2
 tqdm==4.67.1
